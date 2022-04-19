@@ -1,0 +1,6 @@
+host1: 'mysqldb_1'
+host2: 'mysqldb_2'
+host3: 'mysqldb_3'
+mysql_username: 'root'
+mysql_password: 'root'
+mysql_db: 'DB_Phase2'

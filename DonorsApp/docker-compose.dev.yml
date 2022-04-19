@@ -1,0 +1,97 @@
+version: '3.8'
+services:
+ server_1:
+  depends_on: 
+  - mysqldb_1
+  build:
+   context: ./
+  container_name: server_1
+  hostname: server_1
+  networks:
+  - net1
+  - dbnet1
+  ports:
+  - 8000:5000
+  environment:
+  - IS_LEADER=true
+
+ mysqldb_1:
+  image: mysql
+  platform: linux/x86_64
+  container_name: mysqldb_1
+  networks:
+  - dbnet1
+  ports:
+  - 3306:3306
+  environment:
+  - MYSQL_ROOT_PASSWORD=root
+  - MYSQL_TCP_PORT=3306
+  volumes:
+  - mysqldb_1:/var/lib/mysql
+
+ server_2:
+  depends_on: 
+  - mysqldb_2
+  build:
+   context: ./
+  container_name: server_2
+  networks:
+  - net1
+  - dbnet2
+  hostname: server_2
+  ports:
+  - 8001:5000
+  environment:
+  - IS_LEADER=false
+
+
+ mysqldb_2:
+  image: mysql
+  platform: linux/x86_64
+  container_name: mysqldb_2
+  networks:
+  - dbnet2
+  ports:
+  - 3307:3307
+  environment:
+  - MYSQL_ROOT_PASSWORD=root
+  - MYSQL_TCP_PORT=3307
+  volumes:
+  - mysqldb_2:/var/lib/mysql
+ server_3:
+  depends_on: 
+  - mysqldb_3
+  build:
+   context: ./
+  container_name: server_3
+  hostname: server_3
+  networks:
+  - net1
+  - dbnet3
+  ports:
+  - 8002:5000
+  environment:
+  - IS_LEADER=false
+ mysqldb_3:
+  image: mysql
+  platform: linux/x86_64
+  container_name: mysqldb_3
+  networks:
+  - dbnet3
+  ports:
+  - 3308:3308
+  environment:
+  - MYSQL_ROOT_PASSWORD=root
+  - MYSQL_TCP_PORT=3308
+  volumes:
+  - mysqldb_3:/var/lib/mysql
+volumes:
+  mysqldb_1:
+  mysqldb_2:
+  mysqldb_3:
+
+networks:
+  net1:
+  dbnet1:
+  dbnet2:
+  dbnet3:
