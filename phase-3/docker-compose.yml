@@ -1,0 +1,42 @@
+version: "3.8"
+services:
+   node1:
+     container_name: Node1
+     build: Node/.
+     environment:
+     - NODE_ID=1
+
+   node2:
+     container_name: Node2
+     build: Node/.
+     environment:
+     - NODE_ID=2
+
+   node3:
+     container_name: Node3
+     build: Node/.
+     environment:
+     - NODE_ID=3
+
+   node4:
+     container_name: Node4
+     build: Node/.
+     environment:
+     - NODE_ID=4
+
+   node5:
+     container_name: Node5
+     build: Node/.
+     environment:
+     - NODE_ID=5
+
+
+   #Do not change the part below
+   controller:
+       container_name: Controller
+       build: Controller/.
+       stdin_open: true
+
+
+
+
