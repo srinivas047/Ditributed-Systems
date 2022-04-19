@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#donors {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 60%;
+  margin-left: 20%;
+}
+
+#donors td, #donors th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+h3 {
+    margin-left: 20%;
+}
+
+#donors tr:nth-child(even){background-color: #f2f2f2;}
+
+#donors tr:hover {background-color: #ddd;}
+
+#donors th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+<h3>Donar's Details</h3>
+<table id="donors">
+    <th>Name</th>
+    <th>Email</th>
+    <th>Amount</th>
+    {% for user in userDetails %}
+    <tr>
+      <td> {{user[0]}} </td>
+      <td> {{user[1]}} </td>
+      <td> {{user[2]}} </td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>

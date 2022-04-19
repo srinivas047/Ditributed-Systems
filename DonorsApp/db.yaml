@@ -1,0 +1,4 @@
+mysql_host: 'mysqldb'
+mysql_username: 'root'
+mysql_password: 'root'
+mysql_db: 'DB_Phase1'
